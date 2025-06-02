@@ -1,0 +1,144 @@
+/* Base Styles */
+body {
+    background-color: #0a1128;
+    color: #e6f1ff;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.App {
+    max-width: 600px;
+    width: 90%;
+    padding: 2rem;
+    background: linear-gradient(145deg, #0f172a, #1e293b);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Form Styles */
+form {
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background: rgba(15, 23, 42, 0.7);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+label {
+    display: block;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 0.8rem;
+    margin-top: 0.5rem;
+    background: rgba(2, 6, 23, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #e2e8f0;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: #7c3aed;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.3);
+}
+
+/* Buttons */
+input[type="submit"], button {
+    border: none;
+    padding: 0.8rem 1.8rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    background: linear-gradient(45deg, #7c3aed, #a855f7);
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+}
+
+input[type="submit"]:hover, button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+}
+
+input[type="submit"]:active, button:active {
+    transform: translateY(0);
+}
+
+button[style*="marginLeft"] {
+    background: linear-gradient(45deg, #3b82f6, #6366f1);
+}
+
+button[style*="marginLeft"]:hover {
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+/* Timer Section */
+.timer-section {
+    padding: 2rem;
+    background: rgba(15, 23, 42, 0.7);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.timer-display {
+    font-size: 1.5rem;
+    margin: 1.5rem 0;
+    color: #e2e8f0;
+    font-weight: 600;
+}
+
+/* Congratulations Message */
+.congratulations {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+    background: linear-gradient(90deg, #a855f7, #ec4899);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 700;
+    animation: fadeIn 0.5s ease-in-out, glow 2s infinite alternate;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 5px rgba(168, 85, 247, 0.5); }
+    to { text-shadow: 0 0 15px rgba(168, 85, 247, 0.8); }
+}
+
+/* Button Group */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* Reset Button */
+button:last-child {
+    background: linear-gradient(45deg, #ef4444, #f97316);
+}
+
+button:last-child:hover {
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+}
