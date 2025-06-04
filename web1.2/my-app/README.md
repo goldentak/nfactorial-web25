@@ -1,5 +1,7 @@
 # AI Chat Frontend
 
+Deploy: https://nfactorial-web25-eku6.vercel.app/
+
 ## Features
 React + TypeScript + Vite
 

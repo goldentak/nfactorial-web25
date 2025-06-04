@@ -80,7 +80,7 @@ export default function Chat() {
     }
 
     return (
-        <div className="flex flex-col h-full bg-gradient-to-br from-slate-50 to-blue-50 font-sans">
+        <div className="flex flex-col h-full bg-gradient-to-br from-slate-50 to-blue-50 font-sans ">
             <div className="flex items-center justify-between px-6 py-4 bg-white rounded-xl shadow-md border-b border-gray-200">
                 <div className="flex items-center space-x-3">
                     <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">

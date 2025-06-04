@@ -1,5 +1,13 @@
 export default {
-    content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
-    theme: { extend: {} },
-    plugins: [],
+    theme: {
+        extend: {
+            fontFamily: {
+                montserrat: ['MontserratVar', 'sans-serif'],
+            },
+        },
+    },
+    content: [
+        "./index.html",
+        "./src/**/*.{js,ts,jsx,tsx}",
+    ],
 };
