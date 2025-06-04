@@ -67,15 +67,15 @@
             <label>
               Name:
               <input
-                  type="text"
-                  value={name}
-                  onChange={e => setName(e.target.value)}
+                type="text"
+                value={name}
+                onChange={e => setName(e.target.value)}
               />
               <input
-                  type="text"
-                  value={timeSet}
-                  onChange={e => setTimeSet(Number(e.target.value))}
-                  placeholder="Time Set"
+                type="text"
+                value={timeSet}
+                onChange={e => setTimeSet(Number(e.target.value))}
+                placeholder="Time Set"
               />
             </label>
             <input type="submit" value="Submit" />
@@ -83,22 +83,22 @@
 
           <div style={{ marginTop: '20px' }}>
             {seconds > 0 ? (
-                <>
-                  <button onClick={() => setTimerActive(prev => !prev)}>
-                    {timerActive ? 'Stop' : 'Start'}
-                  </button>
-                  <button onClick={resetTimer} style={{ marginLeft: '10px' }}>
-                    Reset
-                  </button>
-                  <div>{name}, {seconds} seconds left</div>
-                </>
+              <>
+                <button onClick={() => setTimerActive(prev => !prev)}>
+                  {timerActive ? 'Stop' : 'Start'}
+                </button>
+                <button onClick={resetTimer} style={{ marginLeft: '10px' }}>
+                  Reset
+                </button>
+                <div>{name}, {seconds} seconds left</div>
+              </>
             ) : (
-                <>
-                  <button onClick={resetTimer}>Try again</button>
-                  <div style={{ marginTop: '10px' }}>
-                    {name && <strong>Congratulations, {name}, you did it!</strong>}
-                  </div>
-                </>
+              <>
+                <button onClick={resetTimer}>Try again</button>
+                <div style={{ marginTop: '10px' }}>
+                  {name && <strong>Congratulations, {name}, you did it!</strong>}
+                </div>
+              </>
             )}
           </div>
           <Flex gap="small" vertica>
@@ -106,13 +106,13 @@
           </Flex>
           <div className="confetti">
             {finished && (
-                <div className="confetti">
-                  <DotLottieReact
-                      src="https://lottie.host/49ab0238-f0cb-42f3-813a-cfcd1aa2d6a4/OLpeyuhECq.lottie"
-                      autoplay
-                      loop={false}
-                  />
-                </div>
+              <div className="confetti">
+                <DotLottieReact
+                    src="https://lottie.host/49ab0238-f0cb-42f3-813a-cfcd1aa2d6a4/OLpeyuhECq.lottie"
+                    autoplay
+                    loop={false}
+                />
+              </div>
             )}
           </div>
 

@@ -1,12 +1,64 @@
-# React + Vite
+# AI Chat Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Features
+React + TypeScript + Vite
 
-Currently, two official plugins are available:
+TailwindCSS for UI
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Gemini 2.0 Flash model for AI responses
 
-## Expanding the ESLint configuration
+localStorage chat persistence
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Chat list with search
+
+## Installation
+Clone the repo:
+``` bash
+git clone https://github.com/your-username/gemini-chat-app.git
+cd my-app
+````
+
+Install dependencies:
+```bash
+npm install
+````
+
+write your own api key in a .env file:
+```env
+VITE_GEMINI_API_KEY=your_api_key_here
+```
+
+Run the app:
+``` bash
+npm run dev
+````
+
+## Example Gemini API Usage
+Internally, the app sends prompts using:
+``` ts
+fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=YOUR_API_KEY", {
+method: "POST",
+headers: { "Content-Type": "application/json" },
+body: JSON.stringify({
+ contents: [
+  {
+   parts: [
+    { text: "Your prompt here" }
+   ]
+  }
+ ]
+})
+})
+```
+
+🗂 Project Structure
+src/pages/Chat.tsx — main chat screen
+
+src/components/ChatList.tsx — chat list sidebar
+
+src/utils/api.ts — handles Gemini API requests
+
+src/utils/useChats.ts — localStorage + chat logic
+
+src/types.ts — type definitions
+

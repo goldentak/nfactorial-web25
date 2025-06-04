@@ -1,4 +1,3 @@
-// src/pages/Chat.tsx
 import { useState, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useChats } from '../utils/useChats';

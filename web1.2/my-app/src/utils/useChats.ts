@@ -1,4 +1,3 @@
-// src/utils/useChats.ts
 import { useState, useEffect } from 'react';
 import { Chat, Message } from '../types';
 import { v4 as uuid } from 'uuid';

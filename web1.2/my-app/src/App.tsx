@@ -56,7 +56,6 @@ function Layout() {
                 <ChatList chats={chats} />
             </aside>
 
-            {/* Основная область чата "островок" */}
             <div className="flex-1 ml-6 flex flex-col bg-[#F4F7FE] rounded-2xl shadow-2xl overflow-hidden">
                 <Routes>
                     <Route path="/" element={<HomeWelcome />} />
