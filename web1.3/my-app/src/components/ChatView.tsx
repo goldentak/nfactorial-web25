@@ -15,6 +15,7 @@ export default function ChatView() {
     const [input, setInput] = useState('');
     const [loading, setLoading] = useState(false);
 
+
     useEffect(() => {
         if (!chatId) return;
         console.log(`${LOCAL_MSG_PREFIX}${chatId}`);
