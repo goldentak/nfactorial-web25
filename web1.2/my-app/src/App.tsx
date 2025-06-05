@@ -30,11 +30,11 @@ function Layout() {
     };
 
     return (
-        <div className="flex h-screen bg-[#2F55B7] p-6">
+        <div className="flex h-screen bg-[#000000] p-6">
             <aside className="w-80 bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden">
                 <div className="p-4 border-b border-gray-200 flex flex-col gap-3">
                     <div className="flex justify-between items-center">
-                        <h2 className="text-xl font-semibold text-gray-800">Чаты</h2>
+                        <h2 className="text-xl font-semibold">Чаты</h2>
                     </div>
                     <div className="flex gap-2">
                         <input
@@ -43,11 +43,11 @@ function Layout() {
                             value={newChatName}
                             onChange={e => setNewChatName(e.target.value)}
                             onKeyDown={e => e.key === 'Enter' && createChat()}
-                            className="flex-1 px-3 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-200 outline-none"
-                        />
+                            className="flex-1 px-4 py-3 rounded-2xl focus:ring-2 focus:ring-blue-200 outline-none"
+                            />
                         <button
                             onClick={createChat}
-                            className="w-10 h-10 flex items-center justify-center bg-[#E273A9] text-white rounded-xl hover:bg-[#d96194] transition"
+                            className="w-10 h-10 flex items-center justify-center bg-grey  text-white rounded-xl hover:bg-[#d96194] transition"
                         >
                             +
                         </button>
@@ -56,7 +56,7 @@ function Layout() {
                 <ChatList chats={chats} />
             </aside>
 
-            <div className="flex-1 ml-6 flex flex-col bg-[#F4F7FE] rounded-2xl shadow-2xl overflow-hidden">
+            <div className="flex-1 ml-6 flex flex-col bg-[#FFFFFF] rounded-2xl shadow-2xl overflow-hidden">
                 <Routes>
                     <Route path="/" element={<HomeWelcome />} />
                     <Route path="/chat/:chatId" element={<Chat />} />
