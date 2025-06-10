@@ -1,6 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { sendToOpenAI } from '../utils/sendToOpenAi';
+import messageStore from '../stores/MessageStore';
+import { useStore } from '@tanstack/react-store';
+
 
 interface Message {
     text: string;
@@ -11,48 +14,71 @@ const LOCAL_MSG_PREFIX = 'chat/';
 
 export default function ChatView() {
     const { chatId } = useParams<{ chatId: string }>();
-    const [messages, setMessages] = useState<Message[]>([]);
     const [input, setInput] = useState('');
     const [loading, setLoading] = useState(false);
 
+    const messages = useStore(messageStore, s => s.messagesByChat[chatId ?? ''] || []);
+
 
     useEffect(() => {
         if (!chatId) return;
-        console.log(`${LOCAL_MSG_PREFIX}${chatId}`);
         try {
             const saved = localStorage.getItem(`${LOCAL_MSG_PREFIX}${chatId}`);
-            setMessages(saved ? JSON.parse(saved) : []);
+            const parsed = saved ? JSON.parse(saved) : [];
+            messageStore.setState(prev => ({
+                messagesByChat: {
+                    ...prev.messagesByChat,
+                    [chatId]: parsed,
+                }
+            }));
         } catch {
-            console.log(chatId + " nweionrioginoerginogr");
-            // setMessages([]);
+            console.log("Error loading localStorage for chat:", chatId);
         }
         setInput('');
-    }, []);
+    }, [chatId]);
 
     useEffect(() => {
         if (!chatId) return;
         try {
-            console.log(messages)
             localStorage.setItem(`${LOCAL_MSG_PREFIX}${chatId}`, JSON.stringify(messages));
-            console.log(messages)
         } catch {}
     }, [messages, chatId]);
 
     const handleSend = async () => {
         if (!input.trim() || !chatId) return;
         const userMsg: Message = { text: input, fromUser: true };
-        setMessages(prev => [...prev, userMsg]);
+
+        messageStore.setState(prev => ({
+            messagesByChat: {
+                ...prev.messagesByChat,
+                [chatId]: [...(prev.messagesByChat[chatId] || []), userMsg]
+            }
+        }));
+
         setInput('');
         setLoading(true);
 
         try {
             const response = await sendToOpenAI(input);
-            setMessages(prev => [...prev, { text: response, fromUser: false }]);
-        } catch (err) {
-            setMessages(prev => [
-                ...prev,
-                { text: '❌ API Bad Request. Please try again.', fromUser: false }
-            ]);
+            const botMsg: Message = { text: response, fromUser: false };
+
+            messageStore.setState(prev => ({
+                messagesByChat: {
+                    ...prev.messagesByChat,
+                    [chatId]: [...(prev.messagesByChat[chatId] || []), botMsg]
+                }
+            }));
+        } catch {
+            const errorMsg: Message = {
+                text: '❌ API Bad Request. Please try again.',
+                fromUser: false,
+            };
+            messageStore.setState(prev => ({
+                messagesByChat: {
+                    ...prev.messagesByChat,
+                    [chatId]: [...(prev.messagesByChat[chatId] || []), errorMsg]
+                }
+            }));
         } finally {
             setLoading(false);
         }

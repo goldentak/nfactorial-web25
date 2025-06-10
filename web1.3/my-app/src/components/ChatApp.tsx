@@ -2,33 +2,49 @@ import { Routes, Route } from 'react-router-dom';
 import './ChatApp.css';
 import Sidebar from './Sidebar';
 import ChatView from './ChatView';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import chatStore from '../stores/ChatStore';
+import { useStore } from '@tanstack/react-store';
 
 const LOCAL_CHATS_KEY = 'chat';
 
 const ChatApp: React.FC = () => {
-    const [allChats, setAllChats] = useState<string[]>(() => {
-        const saved = localStorage.getItem(LOCAL_CHATS_KEY);
-        return saved ? JSON.parse(saved) : ['zhibek', 'askar', 'team-project'];
-    });
+    const chats = useStore(chatStore, s => s.chats);
+    const search = useStore(chatStore, s => s.search);
 
-    const [search, setSearch] = useState('');
-    const filteredChats = allChats.filter(c =>
+    const filteredChats = chats.filter((c: string) =>
         c.toLowerCase().includes(search.toLowerCase())
     );
 
     useEffect(() => {
-        localStorage.setItem(LOCAL_CHATS_KEY, JSON.stringify(allChats));
-    }, [allChats]);
+        const saved = localStorage.getItem(LOCAL_CHATS_KEY);
+        if (saved) {
+            try {
+                const parsed = JSON.parse(saved);
+                chatStore.setState(prev => ({
+                    ...prev,
+                    chats: parsed,
+                }));
+            } catch (e) {
+                console.error('Failed to parse localStorage chats:', e);
+            }
+        }
+    }, []);
 
     const handleCreate = (name: string) => {
         if (!name.trim()) return;
-        const updated = [name, ...allChats.filter(c => c !== name)];
-        setAllChats(updated);
+        const updated = [name, ...chats.filter((c: string) => c !== name)];
+        chatStore.setState(prev => ({
+            ...prev,
+            chats: updated,
+        }));
     };
 
     const handleSearch = (query: string) => {
-        setSearch(query);
+        chatStore.setState(prev => ({
+            ...prev,
+            search: query,
+        }));
     };
 
     return (

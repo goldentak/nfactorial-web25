@@ -1,7 +1,6 @@
-// src/main.tsx (или index.tsx, в зависимости от вашего проекта)
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom'; // ← импортируем BrowserRouter
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
