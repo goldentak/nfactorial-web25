@@ -1,0 +1,48 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #121212;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+}
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.login-container form {
+  background: #1e1e1e;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+.login-container input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 12px;
+  border: none;
+  border-radius: 4px;
+}
+.login-container button {
+  margin-top: 16px;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #6200ee;
+  color: #fff;
+  font-weight: bold;
+}
+.game-field {
+  width: 800px;
+  height: 600px;
+  margin: 20px auto;
+  background: #1e1e1e;
+  position: relative;
+  border: 2px solid #333;
+  border-radius: 8px;
+  overflow: hidden;
+}
